@@ -10,6 +10,8 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ShowtimeValidator.class)
 public @interface ValidShowtime {
     String message() default "Invalid showtime: movie must exist, start and end time must be valid, and duration must match the movie";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

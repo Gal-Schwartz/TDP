@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.att.tdp.popcorn_palace.Entity.Showtime;
 import com.att.tdp.popcorn_palace.service.ShowtimeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/showtimes")
 public class ShowtimeController {
@@ -28,7 +30,7 @@ public class ShowtimeController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addShowtime(@RequestBody Showtime s) {
+    public ResponseEntity<?> addShowtime(@RequestBody @Valid Showtime s) {
         try {
             Showtime showtime = showtimeService.addShowtime(s);
             return ResponseEntity.ok(showtime);
@@ -38,7 +40,7 @@ public class ShowtimeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateShowtime(@PathVariable Long id, @RequestBody Showtime updated) {
+    public ResponseEntity<?> updateShowtime(@PathVariable Long id, @RequestBody @Valid Showtime updated) {
         try {
             Showtime updatedShowtime = showtimeService.updateShowtime(id, updated);
             return ResponseEntity.ok(updatedShowtime);

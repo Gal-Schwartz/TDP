@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.att.tdp.popcorn_palace.Entity.Movie;
 import com.att.tdp.popcorn_palace.service.MovieService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
@@ -28,12 +30,12 @@ public class MovieController {
     }
 
     @PostMapping
-    public Movie addMovie(@RequestBody Movie movie) {
+    public Movie addMovie(@RequestBody @Valid Movie movie) {
         return movieService.addMovie(movie);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody  @Valid Movie movie) {
         try {
             Movie updated = movieService.updateMovie(id, movie);
             return ResponseEntity.ok(updated);

@@ -1,5 +1,4 @@
 
-
 // ======= Custom annotation for release year =======
 package com.att.tdp.popcorn_palace.validation;
 
@@ -12,12 +11,8 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = ReleaseYearValidator.class)
 public @interface ValidReleaseYear {
     String message() default "Release year must be between 1900 and the current year";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
-
-
-
-
-
-

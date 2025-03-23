@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.att.tdp.popcorn_palace.Entity.Ticket;
 import com.att.tdp.popcorn_palace.service.TicketService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/tickets")
@@ -18,7 +20,7 @@ public class TicketController {
     private TicketService ticketService;
 
     @PostMapping("/book")
-    public ResponseEntity<?> bookTicket(@RequestBody Ticket ticket) {
+    public ResponseEntity<?> bookTicket(@RequestBody @Valid Ticket ticket) {
         try {
             Ticket savedTicket = ticketService.bookTicket(ticket);
             return ResponseEntity.ok(savedTicket);
