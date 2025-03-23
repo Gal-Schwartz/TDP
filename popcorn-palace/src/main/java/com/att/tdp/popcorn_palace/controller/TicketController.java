@@ -1,6 +1,7 @@
 package com.att.tdp.popcorn_palace.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,13 @@ public class TicketController {
     private TicketService ticketService;
 
     @PostMapping("/book")
-    public Ticket bookTicket(@RequestBody Ticket ticket) {
-        return ticketService.bookTicket(ticket);
+    public ResponseEntity<?> bookTicket(@RequestBody Ticket ticket) {
+        try {
+            Ticket savedTicket = ticketService.bookTicket(ticket);
+            return ResponseEntity.ok(savedTicket);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
+

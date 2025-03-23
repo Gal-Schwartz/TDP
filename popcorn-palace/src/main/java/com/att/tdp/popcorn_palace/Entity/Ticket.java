@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Ticket {
@@ -13,10 +16,12 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Showtime is required")
     @ManyToOne
     private Showtime showtime;
-
+    @Min(value = 1, message = "Seat number must be positive")
     private int seatNumber;
+    @NotBlank(message = "Customer name is required")
     private String customerName;
 
     // Unique constraint to avoid double booking

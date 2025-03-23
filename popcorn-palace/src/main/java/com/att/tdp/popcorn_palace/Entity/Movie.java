@@ -1,19 +1,35 @@
 package com.att.tdp.popcorn_palace.Entity;
 
+import com.att.tdp.popcorn_palace.validation.ValidReleaseYear;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Title is required")
     private String title;
+
+    @NotBlank(message = "Genre is required")
     private String genre;
+
+    @Min(value = 1, message = "Duration must be at least 1 minute")
     private int duration; // in minutes
+
+    @DecimalMin(value = "0.0", inclusive = true, message = "Rating must be at least 0.0")
+    @DecimalMax(value = "10.0", inclusive = true, message = "Rating must be at most 10.0")
     private double rating;
+    
+    @ValidReleaseYear
     private int releaseYear;
 
     public Long getId() { return id; }
