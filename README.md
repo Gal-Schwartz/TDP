@@ -71,9 +71,9 @@ com.att.tdp.popcorn_palace.src.main
 ├── validation
 ├── exception
 └── PopcornPalaceApplication.java
-```
+
 com.att.tdp.popcorn_palace.src.test
-└── PopcornPalaceApplicationTests.java
+├── PopcornPalaceApplicationTests.java
 
 ---
 
