@@ -13,7 +13,6 @@ import com.att.tdp.popcorn_palace.service.TicketService;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
@@ -30,4 +29,3 @@ public class TicketController {
         }
     }
 }
-

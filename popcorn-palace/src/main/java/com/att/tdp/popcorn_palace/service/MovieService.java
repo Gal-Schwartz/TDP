@@ -28,7 +28,8 @@ public class MovieService {
 
     public Movie updateMovie(Long id, Movie updatedMovie) {
 
-        Movie existMovie = movieRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie not found"));
+        Movie existMovie = movieRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Movie not found"));
         existMovie.setDuration(updatedMovie.getDuration());
         existMovie.setGenre(updatedMovie.getGenre());
         existMovie.setRating(updatedMovie.getRating());

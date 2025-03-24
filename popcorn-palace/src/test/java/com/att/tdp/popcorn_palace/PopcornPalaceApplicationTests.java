@@ -110,7 +110,7 @@ class PopcornPalaceApplicationTests {
 		Showtime overlap = new Showtime();
 		overlap.setMovie(movie);
 		overlap.setTheater("A1");
-		overlap.setStartTime(LocalDateTime.of(2025, 3, 21, 21, 0)); 
+		overlap.setStartTime(LocalDateTime.of(2025, 3, 21, 21, 0));
 		overlap.setEndTime(LocalDateTime.of(2025, 3, 21, 23, 0));
 		overlap.setPrice(35.0);
 
@@ -125,15 +125,13 @@ class PopcornPalaceApplicationTests {
 		newShow.setTheater("A1");
 		newShow.setStartTime(LocalDateTime.of(2025, 3, 21, 22, 30));
 		newShow.setEndTime(LocalDateTime.of(2025, 3, 21, 23, 30));
-	
+
 		when(showtimeRepository.findByTheater("A1")).thenReturn(List.of(showtime));
 		when(showtimeRepository.save(any())).thenReturn(newShow);
-	
+
 		Showtime saved = showtimeService.addShowtime(newShow);
 		assertEquals("A1", saved.getTheater());
 	}
-	
-
 
 	@Test
 	void testUpdateShowtime__shouldSucceed() {
@@ -204,11 +202,10 @@ class PopcornPalaceApplicationTests {
 		assertFalse(validator.isValid(9999, mock(ConstraintValidatorContext.class)));
 	}
 
-
 	@Test
 	void testTicket_customerName_blank_shouldFailValidation() {
 		Ticket ticket = new Ticket();
-		ticket.setCustomerName("   "); 
+		ticket.setCustomerName("   ");
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();

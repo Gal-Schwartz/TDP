@@ -44,13 +44,11 @@ public class ShowtimeService {
         }
         showtimeRepository.deleteById(id);
     }
-    
 
     public Showtime getShowtimeById(Long id) {
         return showtimeRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Showtime not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Showtime not found"));
     }
-    
 
     public Showtime updateShowtime(Long id, Showtime updated) {
         Showtime existing = getShowtimeById(id);
@@ -77,24 +75,24 @@ public class ShowtimeService {
 
     private void validateShowtimeOrThrow(Showtime s) {
 
-            if (s == null || s.getMovie() == null || s.getMovie().getId() == null) {
-                throw new IllegalArgumentException("Movie must be specified");
-            }
-    
-            Optional<Movie> movieOpt = movieRepository.findById(s.getMovie().getId());
-            if (movieOpt.isEmpty()) {
-                throw new IllegalArgumentException("Movie not found");
-            }
-    
-            if (s.getStartTime() == null || s.getEndTime() == null || !s.getEndTime().isAfter(s.getStartTime())) {
-                throw new IllegalArgumentException("End time must be after start time");
-            }
-    
-            long actualDuration = Duration.between(s.getStartTime(), s.getEndTime()).toMinutes();
-            if (actualDuration < movieOpt.get().getDuration()) {
-                throw new IllegalArgumentException("Duration mismatch between showtime and movie");
-            }
-    
+        if (s == null || s.getMovie() == null || s.getMovie().getId() == null) {
+            throw new IllegalArgumentException("Movie must be specified");
+        }
+
+        Optional<Movie> movieOpt = movieRepository.findById(s.getMovie().getId());
+        if (movieOpt.isEmpty()) {
+            throw new IllegalArgumentException("Movie not found");
+        }
+
+        if (s.getStartTime() == null || s.getEndTime() == null || !s.getEndTime().isAfter(s.getStartTime())) {
+            throw new IllegalArgumentException("End time must be after start time");
+        }
+
+        long actualDuration = Duration.between(s.getStartTime(), s.getEndTime()).toMinutes();
+        if (actualDuration < movieOpt.get().getDuration()) {
+            throw new IllegalArgumentException("Duration mismatch between showtime and movie");
+        }
+
     }
 
 }
