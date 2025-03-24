@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.att.tdp.popcorn_palace.Entity.Showtime;
-import com.att.tdp.popcorn_palace.Entity.Ticket;
-import com.att.tdp.popcorn_palace.Repository.ShowtimeRepository;
-import com.att.tdp.popcorn_palace.Repository.TicketRepository;
+import com.att.tdp.popcorn_palace.entity.Showtime;
+import com.att.tdp.popcorn_palace.entity.Ticket;
+import com.att.tdp.popcorn_palace.repository.ShowtimeRepository;
+import com.att.tdp.popcorn_palace.repository.TicketRepository;
 
 import jakarta.transaction.Transactional;
 
