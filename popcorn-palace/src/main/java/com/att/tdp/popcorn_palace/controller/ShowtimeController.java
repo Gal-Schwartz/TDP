@@ -3,6 +3,7 @@ package com.att.tdp.popcorn_palace.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,7 @@ public class ShowtimeController {
     public ResponseEntity<?> addShowtime(@RequestBody @Valid Showtime s) {
         try {
             Showtime showtime = showtimeService.addShowtime(s);
-            return ResponseEntity.ok(showtime);
+            return ResponseEntity.status(HttpStatus.CREATED).body(showtime);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -52,13 +53,17 @@ public class ShowtimeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteShowtime(@PathVariable Long id) {
         showtimeService.deleteShowtime(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Showtime> getShowtimeById(@PathVariable Long id) {
-        return showtimeService.getShowtimeById(id)
-            .map(ResponseEntity::ok)
-            .orElse(ResponseEntity.notFound().build());
+        Showtime showtime = showtimeService.getShowtimeById(id);
+        if (showtime != null) {
+            return ResponseEntity.ok(showtime);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 }

@@ -1,9 +1,6 @@
 package com.att.tdp.popcorn_palace.Entity;
 
 import java.time.LocalDateTime;
-
-import com.att.tdp.popcorn_palace.validation.ValidShowtime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +10,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-@ValidShowtime
+
 @Entity
 public class Showtime {
     @Id

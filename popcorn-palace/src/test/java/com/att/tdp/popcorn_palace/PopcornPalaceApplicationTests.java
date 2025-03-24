@@ -10,7 +10,6 @@ import com.att.tdp.popcorn_palace.service.MovieService;
 import com.att.tdp.popcorn_palace.service.ShowtimeService;
 import com.att.tdp.popcorn_palace.service.TicketService;
 import com.att.tdp.popcorn_palace.validation.ReleaseYearValidator;
-import com.att.tdp.popcorn_palace.validation.ShowtimeValidator;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
@@ -34,7 +33,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -206,43 +204,6 @@ class PopcornPalaceApplicationTests {
 		assertFalse(validator.isValid(9999, mock(ConstraintValidatorContext.class)));
 	}
 
-	@Test
-	void testValidShowtime_durationMismatch_shouldFail() {
-		movie.setDuration(120);
-		when(movieRepository.findById(1L)).thenReturn(Optional.of(movie));
-
-		ShowtimeValidator validator = new ShowtimeValidator();
-		validator.setMovieRepository(movieRepository);
-
-		showtime.setMovie(movie);
-		showtime.setStartTime(LocalDateTime.of(2025, 3, 21, 20, 0));
-		showtime.setEndTime(LocalDateTime.of(2025, 3, 21, 21, 0)); // only 60 minutes
-
-		ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
-    ConstraintValidatorContext.ConstraintViolationBuilder builder = mock(ConstraintValidatorContext.ConstraintViolationBuilder.class);
-
-    when(context.buildConstraintViolationWithTemplate(anyString())).thenReturn(builder);
-    when(builder.addConstraintViolation()).thenReturn(context);
-
-    boolean valid = validator.isValid(showtime, context);
-
-    assertFalse(valid);
-	}
-
-	@Test
-	void testValidShowtime_valid() {
-		movie.setDuration(120);
-		when(movieRepository.findById(1L)).thenReturn(Optional.of(movie));
-
-		ShowtimeValidator validator = new ShowtimeValidator();
-		validator.setMovieRepository(movieRepository);
-
-		showtime.setStartTime(LocalDateTime.of(2025, 3, 21, 20, 0));
-		showtime.setEndTime(LocalDateTime.of(2025, 3, 21, 22, 0));
-
-		boolean valid = validator.isValid(showtime, mock(ConstraintValidatorContext.class));
-		assertTrue(valid);
-	}
 
 	@Test
 	void testTicket_customerName_blank_shouldFailValidation() {

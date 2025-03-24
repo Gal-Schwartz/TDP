@@ -17,6 +17,11 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    public Movie getMovieById(Long id) {
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Movie not found"));
+    }
+
     public Movie addMovie(Movie movie) {
         return movieRepository.save(movie);
     }
