@@ -1,4 +1,4 @@
-package com.att.tdp.popcorn_palace.Entity;
+package com.att.tdp.popcorn_palace.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

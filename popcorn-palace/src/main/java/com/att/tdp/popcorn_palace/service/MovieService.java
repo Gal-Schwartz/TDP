@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.att.tdp.popcorn_palace.Entity.Movie;
-import com.att.tdp.popcorn_palace.Repository.MovieRepository;
+import com.att.tdp.popcorn_palace.entity.Movie;
+import com.att.tdp.popcorn_palace.repository.MovieRepository;
 
 @Service
 public class MovieService {

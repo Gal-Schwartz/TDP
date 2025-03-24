@@ -1,11 +1,11 @@
 package com.att.tdp.popcorn_palace;
 
-import com.att.tdp.popcorn_palace.Entity.Movie;
-import com.att.tdp.popcorn_palace.Entity.Showtime;
-import com.att.tdp.popcorn_palace.Entity.Ticket;
-import com.att.tdp.popcorn_palace.Repository.MovieRepository;
-import com.att.tdp.popcorn_palace.Repository.ShowtimeRepository;
-import com.att.tdp.popcorn_palace.Repository.TicketRepository;
+import com.att.tdp.popcorn_palace.entity.Movie;
+import com.att.tdp.popcorn_palace.entity.Showtime;
+import com.att.tdp.popcorn_palace.entity.Ticket;
+import com.att.tdp.popcorn_palace.repository.MovieRepository;
+import com.att.tdp.popcorn_palace.repository.ShowtimeRepository;
+import com.att.tdp.popcorn_palace.repository.TicketRepository;
 import com.att.tdp.popcorn_palace.service.MovieService;
 import com.att.tdp.popcorn_palace.service.ShowtimeService;
 import com.att.tdp.popcorn_palace.service.TicketService;

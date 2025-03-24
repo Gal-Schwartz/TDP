@@ -7,10 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.att.tdp.popcorn_palace.Entity.Movie;
-import com.att.tdp.popcorn_palace.Entity.Showtime;
-import com.att.tdp.popcorn_palace.Repository.MovieRepository;
-import com.att.tdp.popcorn_palace.Repository.ShowtimeRepository;
+import com.att.tdp.popcorn_palace.entity.Movie;
+import com.att.tdp.popcorn_palace.entity.Showtime;
+import com.att.tdp.popcorn_palace.repository.MovieRepository;
+import com.att.tdp.popcorn_palace.repository.ShowtimeRepository;
 
 @Service
 public class ShowtimeService {
